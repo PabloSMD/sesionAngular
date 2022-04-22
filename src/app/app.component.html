@@ -14,35 +14,16 @@
     <div class="row" style="padding-top: 20px; padding-left: 10px">
       <div class="col-md-2">Filtrar por:</div>
       <div class="col-md-4">
-        <input type="text" />
+        <input type="text"
+         [(ngModel)] = "listFilter" />
+      </div>
+      <div class="col-md-6" >
+        Filtrado por: {{listFilter}}
       </div>
     </div>
     <br>
 
-    <div class="card border-primary mb-3 text-center">
-      <div class="card-header">Lista de Productos</div>
-      <div class="card-body text-primary">
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>
-                  <button class="btn btn-primary">
-                    <i class="fa fa-eye"></i>
-                    Imagenes
-                  </button>
-                </th>
-                <th>Producto</th>
-                <th>Codigo</th>
-                <th>Disponible</th>
-                <th>Precio</th>
-                <th>Rating</th>
-              </tr>
-            </thead>
-            <tr></tr>
-          </table>
-        </div>
-      </div>
-    </div>
+<app-product-list  [datos] ="filteredProducts" > </app-product-list>
+
   </div>
 </div>
