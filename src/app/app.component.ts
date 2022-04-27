@@ -23,7 +23,7 @@ _listFilter: string = '';
   filteredProducts: IProduct[] = [];
 
 performFilter (filterBy: string) : IProduct [] {
-  filterBy = filterBy.toLocaleLowerCase(); //convertir filterBy a minúscilas
+  filterBy = filterBy.toLocaleLowerCase(); //convertir filterBy a minúsculas
   return this.products.filter((product: IProduct) =>
   product.productName.toLocaleLowerCase().indexOf(filterBy)!== -1);
 //retorna el nuevo arreglo filtrado 
@@ -45,7 +45,7 @@ products: IProduct [] = [
 "releaseDate": "March 19, 2016",
 "description": "Zapatillas de lona con cana marca Converse" ,
 "price" : 19.95,
-"starRating": 3.2,
+"starRating": 200,
 "imageUrl": "https://img2.freepng.es/20180415/dtw/kisspng-chuck-taylor-all-stars-sneakers-converse-shoe-high-men-shoes-5ad2dacb035b76.1895805615237680110138.jpg"
 
 },
@@ -57,7 +57,7 @@ products: IProduct [] = [
 "releaseDate": "March 10, 2016",
 "description": "Jeans Azules Americanino" ,
 "price" : 24.95,
-"starRating": 4.2,
+"starRating": 50,
 "imageUrl": "https://pngimg.com/uploads/jeans/jeans_PNG5767.png" 
 },
 {
@@ -67,7 +67,7 @@ products: IProduct [] = [
   "releaseDate": "Januarry 19, 2017",
   "description": "Polera para Hombre Verano" ,
   "price" : 15.90,
-  "starRating": 5.0,
+  "starRating": 150,
   "imageUrl": "https://i0.pngocean.com/files/321/373/250/t-shirt-boyfriend-crew-neck-man-t-shirt.jpg"
 
   },
