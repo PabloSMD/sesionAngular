@@ -19,8 +19,8 @@
               </tr>
             </thead>
             <tr *ngFor="let product of products">
-              <td><img [src]='product.imageUrl'
-                [title] = 'product.productName'
+              <td><img [src]="product.imageUrl | defaultImage: 'https://skillz4kidzmartialarts.com/wp-content/uploads/2017/04/default-image.jpg'"
+                [title] = 'product.productName | uppercase'
                 [style.width.px]  = 'imageWidth'
                 [style.margin.px] = 'imageMargin'
                 alt
@@ -28,8 +28,8 @@
                   >
                   </td>
               <td>{{product.productName}}</td>
-              <td>{{product.productCode}}</td>
-              <td>{{product.releaseDate}}</td>
+              <td>{{product.productCode | lowercase}}</td>
+              <td>{{product.releaseDate | date:'dd/MM/yyyy'}}</td>
               <td>{{product.price}}</td>
               <td><app-star [rating]="product.starRating"></app-star> </td>
             </tr>

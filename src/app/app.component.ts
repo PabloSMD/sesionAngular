@@ -46,8 +46,7 @@ products: IProduct [] = [
 "description": "Zapatillas de lona con cana marca Converse" ,
 "price" : 19.95,
 "starRating": 200,
-"imageUrl": "https://img2.freepng.es/20180415/dtw/kisspng-chuck-taylor-all-stars-sneakers-converse-shoe-high-men-shoes-5ad2dacb035b76.1895805615237680110138.jpg"
-
+"imageUrl": ""
 },
 {
 
