@@ -12,6 +12,7 @@ import {registerLocaleData} from '@angular/common';
 import localeEsCL from '@angular/common/locales/es-CL'
 import { DefaultPipe } from './shared/image.pipe';
 
+import {HttpClientModule } from '@angular/common/http';
 registerLocaleData(localeEsCL, 'es-CL');
 
 @NgModule({
@@ -23,7 +24,8 @@ registerLocaleData(localeEsCL, 'es-CL');
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [{provide: LOCALE_ID, useValue: 'es-CL'}],
   bootstrap: [AppComponent]

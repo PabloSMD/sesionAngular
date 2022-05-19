@@ -17,8 +17,13 @@
         <input type="text"
          [(ngModel)] = "listFilter" />
       </div>
-      <div class="col-md-6" >
+      <div class="col-md-4" >
         Filtrado por: {{listFilter}}
+      </div>
+      <div class="cold-md-2">
+        <button class="btn btn-primary" (click)="crearProducto()">
+          Crear Producto
+        </button>
       </div>
     </div>
     <br>

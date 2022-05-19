@@ -13,6 +13,7 @@ export class ProductListComponent implements OnInit {
   imageWidth: number = 100;
   imageMargin: number = 10;
   showImage:boolean = false;
+  productService: any;
 
   constructor() { }
 
@@ -23,4 +24,37 @@ export class ProductListComponent implements OnInit {
     this.showImage = !this.showImage;
   }
 
+viewProduct () {
+  console.log("a");
 }
+
+  deleteProduct (id:number) {
+    this.productService.deleteProduct(id).suscribe(() => {
+      return this.productService.getProducts().suscribe((res:any []) => {
+        this.productService.products = res;
+        this.productService.filteredProducts = res;
+      },
+        (      err: any) => console.log(err));
+      }) 
+    }
+
+    // Actualizar un producto 
+    updateProduct(id: number, producto: IProduct) {
+      let datos: any = {
+        productName: 'Producto' + Math.round(Math.random() * (100 -1)+ 1),
+        productCode: this.productService.generarCodigo(),
+        releaseDate: '2019-03-07',
+        price: Math.round(Math.random() * (130-20) + 20 ),
+        description: 'Producto de prueba 2',
+        starRating: Math.round(Math.random() * (200-1) +1),
+        imageUrl: ''
+      };
+      this.productService.updateProduct(id, datos).suscribe(() => {
+        return this.productService.getProducts().suscribe((res:any []) => {
+          this.productService.products = res;
+          this.productService.filteredProducts = res;
+        },
+          (        err: any) => console.log(err));
+      })
+    }
+  }

@@ -17,8 +17,13 @@ import { ProductService } from './product/product.service';
 export class AppComponent {
 
   ngOnInit () : void {
-    this.products = this.productService.getProducts();
-    this.filteredProducts = this.products;
+    this.productService.getProducts().subscribe((res : any[]) => {
+      this.products = res;
+      this.filteredProducts = res;
+      console.log(this.products);
+    },
+    err => console.log(err)
+    )
   }
 
 title: string = 'Empresa ACME';
@@ -43,4 +48,29 @@ set listFilter ( value : string) {
 } 
 
 products: IProduct [] = [];
+
+
+crearProducto () {
+  let datos: any = {
+    name: 'Producto' + Math.round (Math.random()*(100 -1) +1),
+    code: this.productService.generarCodigo(),
+    date: '2019-03-07',
+    price: Math.round(Math.random() * (130-20) +20),
+    description: 'Producto de prueba',
+    rating: Math.round(Math.random()* (200-1)+1),
+    image: ''
+  };
+  this.guardarProducto(datos);
+}
+
+guardarProducto (producto: IProduct) {
+  this.productService.saveProduct(producto).subscribe(()=> {
+    return this.productService.getProducts().subscribe((res: any[]) => {
+      this.products = res;
+      this.filteredProducts = res;
+    },
+    err => console.log(err));
+  })
+
+}
 }

@@ -32,6 +32,20 @@
               <td>{{product.releaseDate | date:'dd/MM/yyyy'}}</td>
               <td>{{product.price}}</td>
               <td><app-star [rating]="product.starRating"></app-star> </td>
+              <td> 
+                <button class="btn btn-success" >
+                                         <!-- (click)="viewProduct(product)" -->
+                  <i class="fa fa-eye"> </i> Ver
+                 </button>
+                 &nbsp;
+                 <button class="btn btn-warning" (click)="updateProduct(product.productId, product)">
+                   <i class="fas fa-pencil-alt"></i> Editar
+                 </button>
+                 &nbsp;
+                 <button class="btn btn-danger" (click)="deleteProduct(product.productId)">
+                   <i class="fas fa-trash-alt"></i> B
+                 </button>
+              </td>
             </tr>
           </table>
         </div>
