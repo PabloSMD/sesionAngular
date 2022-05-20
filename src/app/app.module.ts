@@ -13,6 +13,7 @@ import localeEsCL from '@angular/common/locales/es-CL'
 import { DefaultPipe } from './shared/image.pipe';
 
 import {HttpClientModule } from '@angular/common/http';
+import { ModalAddComponent } from './services/modal-add/modal-add.component';
 registerLocaleData(localeEsCL, 'es-CL');
 
 @NgModule({
@@ -20,7 +21,8 @@ registerLocaleData(localeEsCL, 'es-CL');
     AppComponent,
     ProductListComponent,
     StarComponent,
-    DefaultPipe
+    DefaultPipe,
+    ModalAddComponent
   ],
   imports: [
     BrowserModule,
