@@ -2,7 +2,7 @@
       <div class="card-header">Lista de Productos</div>
       <div class="card-body text-primary">
         <div class="table-responsive">
-          <table class="table" *ngIf ="products && products.length">
+          <table class="table" *ngIf ="this.productService.products && this.productService.products.length">
             <thead>
               <tr>
                 <th>
@@ -18,7 +18,7 @@
                 <th>Rating</th>
               </tr>
             </thead>
-            <tr *ngFor="let product of products">
+            <tr *ngFor="let product of this.productService.filteredProducts">
               <td><img [src]="product.imageUrl | defaultImage: 'https://skillz4kidzmartialarts.com/wp-content/uploads/2017/04/default-image.jpg'"
                 [title] = 'product.productName | uppercase'
                 [style.width.px]  = 'imageWidth'

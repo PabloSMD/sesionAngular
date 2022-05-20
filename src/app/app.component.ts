@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IProduct } from './product';
 
 import { ProductService } from './product/product.service';
+import { ModalAddService } from './services/modal-add.service';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +31,7 @@ title: string = 'Empresa ACME';
 _listFilter: string = '';
   filteredProducts: IProduct[] = [];
 
-  constructor (private productService: ProductService) {}
+  constructor (private productService: ProductService, public modalAddService: ModalAddService) {}
 
 performFilter (filterBy: string) : IProduct [] {
   filterBy = filterBy.toLocaleLowerCase(); //convertir filterBy a minúsculas
@@ -75,8 +76,7 @@ guardarProducto (producto: IProduct) {
 }
 
 abrirModal () {
-  this.modalAddService.mostrarModal () {
-    
-  }
+  this.modalAddService.mostrarModal (); 
 }
+
 }

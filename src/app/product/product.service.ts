@@ -8,6 +8,8 @@ import { ThisReceiver } from '@angular/compiler';
   providedIn: 'root'
 })
 export class ProductService {
+  filteredProducts: IProduct[]=[];
+  public products: IProduct[] = [];
 
   constructor(private http: HttpClient) { }
 

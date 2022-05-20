@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/product';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -8,14 +9,13 @@ import { IProduct } from 'src/app/product';
 })
 export class ProductListComponent implements OnInit {
 
-  @Input ('datos') public products:IProduct [] = [];
+ /*  @Input ('datos') public products:IProduct [] = []; */
   title = 'Empresa ACME';
   imageWidth: number = 100;
   imageMargin: number = 10;
   showImage:boolean = false;
-  productService: any;
 
-  constructor() { }
+  constructor(public productService: ProductService) { }
 
   ngOnInit() {
   }
@@ -29,10 +29,9 @@ viewProduct () {
 }
 
   deleteProduct (id:number) {
-    this.productService.deleteProduct(id).suscribe(() => {
-      return this.productService.getProducts().suscribe((res:any []) => {
-        this.productService.products = res;
-        this.productService.filteredProducts = res;
+    this.productService.deleteProduct(id).subscribe(() => {
+      return this.productService.getProducts().subscribe((res:any []) => {
+       this.productService.products = res;
       },
         (      err: any) => console.log(err));
       }) 
@@ -49,8 +48,8 @@ viewProduct () {
         starRating: Math.round(Math.random() * (200-1) +1),
         imageUrl: ''
       };
-      this.productService.updateProduct(id, datos).suscribe(() => {
-        return this.productService.getProducts().suscribe((res:any []) => {
+      this.productService.updateProduct(id, datos).subscribe(() => {
+        return this.productService.getProducts().subscribe((res:any []) => {
           this.productService.products = res;
           this.productService.filteredProducts = res;
         },
