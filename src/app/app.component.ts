@@ -73,4 +73,10 @@ guardarProducto (producto: IProduct) {
   })
 
 }
+
+abrirModal () {
+  this.modalAddService.mostrarModal () {
+    
+  }
+}
 }

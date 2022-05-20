@@ -9,6 +9,10 @@ export class ModalAddComponent implements OnInit {
 
   constructor() { }
 
+
+  ocultarModal () {
+    this.modalAddService.ocultarModal();
+  }
   ngOnInit(): void {
   }
 
