@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-expand navbar-dark bg-primary">
   <a class="navbar-brand" href="#">
     <img width="100" alt="ACME Logo" src="../assets/logo-acme.png" />
@@ -7,31 +9,18 @@
   </div>
 </nav>
 
-<br />
+<nav class="navbar navbar-expand-sm bg-light" >
+  <!-- Links -->
+  <ul class="navbar-nav" >
+    <li class="nav-item" >
+      <a [routerLink]="['welcome']" class="nav-link"> Home </a>
+    </li>
+    <li class="nav-item">
+      <a [routerLink]="['product/product-list']" class="nav-link" > Productos </a>
+    </li>
+  </ul>
+</nav>
 
-<div class="card">
-  <div class="card-body">
-    <div class="row" style="padding-top: 20px; padding-left: 10px">
-      <div class="col-md-2">Filtrar por:</div>
-      <div class="col-md-4">
-        <input type="text"
-         [(ngModel)] = "listFilter" />
-      </div>
-      <div class="col-md-4" >
-        Filtrado por: {{listFilter}}
-      </div>
-      <div class="cold-md-2">
-        <button class="btn btn-primary" (click)="abrirModal()">
-          Crear Producto
-        </button>
-      </div>
-    </div>
-    <br>
-
-<app-product-list> </app-product-list>
-
-  </div>
-</div>
-
+<router-outlet> </router-outlet>
 
 <app-modal-add> </app-modal-add>

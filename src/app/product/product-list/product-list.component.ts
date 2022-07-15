@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/product';
+import { ModalAddService } from 'src/app/services/modal-add.service';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { ProductService } from '../product.service';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent {
 
  /*  @Input ('datos') public products:IProduct [] = []; */
   title = 'Empresa ACME';
@@ -15,10 +16,57 @@ export class ProductListComponent implements OnInit {
   imageMargin: number = 10;
   showImage:boolean = false;
 
-  constructor(public productService: ProductService) { }
+  itle: string = 'Empresa ACME';
+_listFilter: string = '';
+  filteredProducts: IProduct[] = [];
 
-  ngOnInit() {
-  }
+  constructor (public productService: ProductService, public modalAddService: ModalAddService) {}
+
+performFilter (filterBy: string) : IProduct [] {
+  filterBy = filterBy.toLocaleLowerCase(); //convertir filterBy a minúsculas
+  return this.products.filter((product: IProduct) =>
+  product.productName.toLocaleLowerCase().indexOf(filterBy)!== -1);
+
+//retorna el nuevo arreglo filtrado 
+}
+get listFilter() : string {
+return this._listFilter;
+}
+set listFilter ( value : string) {
+  this._listFilter = value;
+  this.filteredProducts = this.listFilter ? this.performFilter (this.listFilter) : this.products;
+} 
+
+products: IProduct [] = [];
+
+crearProducto () {
+  let datos: any = {
+    name: 'Producto' + Math.round (Math.random()*(100 -1) +1),
+    code: this.productService.generarCodigo(),
+    date: '2019-03-07',
+    price: Math.round(Math.random() * (130-20) +20),
+    description: 'Producto de prueba',
+    rating: Math.round(Math.random()* (200-1)+1),
+    image: ''
+  };
+  this.guardarProducto(datos);
+}
+
+guardarProducto (producto: IProduct) {
+  this.productService.saveProduct(producto).subscribe(()=> {
+    return this.productService.getProducts().subscribe((res: any[]) => {
+      this.products = res;
+      this.filteredProducts = res;
+    },
+    err => console.log(err));
+  })
+
+}
+
+abrirModal () {
+  this.modalAddService.mostrarModal (); 
+}
+
 
   toggleImage(): void {
     this.showImage = !this.showImage;

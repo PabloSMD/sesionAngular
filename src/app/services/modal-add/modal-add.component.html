@@ -26,10 +26,12 @@
                                <div class="form-group row">
                                 <label class="col-2 col-form-label" > Código </label>
                                 <div class="col-md-8">
-                                    <input formControlName ="code" class="form-control" type="String" placeholder="Precio" >
-                                    <div *ngIf="formProduct.get('code')?.errors && (formProduct.get('code')?.touched || formProduct.get('name')?.dirty)"
-                                    class="alert alert-danger"> El código del Producto es obligatorio
-                                 </div>
+                                    <input formControlName ="code" class="form-control" type="String" placeholder="Código" >
+                                    <span *ngIf="formProduct.get('code')?.pending"> (buscando...) </span>
+                                    <div *ngIf="formProduct.get('code')?.errors && formProduct.get ('code')?.errors?.['existe']"
+                                    class="alert alert-danger"> El código ya existe 
+                                </div>
+                                    
                                 </div>
                             </div>
                         

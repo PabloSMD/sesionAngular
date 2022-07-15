@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '../product';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Observable, timer} from 'rxjs';
+import {map, switchMap} from 'rxjs/operators';
 import { ThisReceiver } from '@angular/compiler';
 @Injectable({
   providedIn: 'root'
@@ -85,6 +85,15 @@ export class ProductService {
        ]
     
   } */
+
+  searchProduct (code: any) {
+    return timer (1000).pipe(switchMap (() => {
+      // Chequear si el codigo está disponible
+      return this.http.get <any> ('http://localhost:3000/existeproducto/' + code)
+      .pipe(map((res:any) => res.data));
+  })
+  );
+}
 
   deleteProduct(id: number) {
     return this.http.delete('http://localhost:3000/producto/'+id);
